@@ -70,9 +70,6 @@ form.addEventListener("submit", async (e) => {
   
   addMessage("user", "You", message);
   const pending = addMessage("bot", "Bot", "…");
-
-  history.push({ role: "user", content: message });
-  if (history.length > MAX_HISTORY) history.splice(0, history.length - MAX_HISTORY);
   
   try {
     const r = await fetch("/chat", {
@@ -99,6 +96,7 @@ form.addEventListener("submit", async (e) => {
     const botText = data?.text || "No response";
     pending.querySelector(".text").textContent = botText;
 
+    history.push({ role: "user", content: message });
     history.push({ role: "assistant", content: botText });
     if (history.length > MAX_HISTORY) history.splice(0, history.length - MAX_HISTORY);
   } catch {
