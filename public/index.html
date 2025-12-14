@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Ukraine AI Strategy Bot</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <div class="app">
+      <header class="header">
+        <div class="brand">
+          <div class="dot"></div>
+          <div>
+            <div class="title">Ukraine AI Strategy Bot</div>
+            <div class="subtitle">Scoped consulting assistant. Enter sends, Shift+Enter adds a new line.</div>
+          </div>
+        </div>
+        <div class="status" id="status">
+          <span class="pill" id="health">Checking…</span>
+        </div>
+      </header>
+
+      <main class="chat" id="log" aria-live="polite"></main>
+
+      <form class="composer" id="form">
+        <textarea
+          id="input"
+          class="input"
+          rows="3"
+          placeholder="Ask about Ukraine’s AI strategy, pillars, benchmarks, or implementation steps…"
+        ></textarea>
+        <div class="actions">
+          <button type="button" class="btn ghost" id="clear">Clear</button>
+          <button type="submit" class="btn" id="send">Send</button>
+        </div>
+      </form>
+
+      <footer class="footer">
+        <span class="hint">Tip: Try “What are the priority sectors for AI development?”</span>
+      </footer>
+    </div>
+
+    <script src="/app.js"></script>
+  </body>
+</html>
