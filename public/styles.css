@@ -22,6 +22,8 @@
 html, body {
   height: 100%;
   margin: 0;
+  padding: 0;
+  overflow: hidden;
   background: radial-gradient(1200px 700px at 20% 10%, rgba(43,124,255,0.18), transparent 60%),
               radial-gradient(900px 600px at 80% 0%, rgba(154,236,174,0.12), transparent 55%),
               var(--bg);
