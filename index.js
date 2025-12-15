@@ -98,7 +98,7 @@ app.post("/chat", async (req, res) => {
     }
 
     const payload = {
-      model: "gpt-5-nano",
+      model: process.env.OPENAI_MODEL || "gpt-5-nano",
       input: [
         { role: "system", content: SYSTEM },
         ...history,
