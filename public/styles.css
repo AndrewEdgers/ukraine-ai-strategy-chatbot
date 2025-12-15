@@ -31,7 +31,7 @@ html, body {
 
 .app {
   max-width: 960px;
-  margin: 22px auto;
+  margin: 12px auto;
   padding: 0 14px;
   display: grid;
   grid-template-rows: auto 1fr auto auto;

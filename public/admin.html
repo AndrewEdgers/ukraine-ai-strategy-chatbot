@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Admin</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <h2>Admin panel</h2>
+
+  <input id="pin" placeholder="PIN" type="password"><br><br>
+
+  <label>Model</label><br>
+  <select id="model">
+    <option value="gpt-5-nano" selected>gpt-5-nano</option>
+    <option value="gpt-5-mini">gpt-5-mini</option>
+  </select><br><br>
+
+  <label>Reasoning</label><br>
+  <select id="reasoning">
+    <option value="minimal" selected>minimal</option>
+    <option value="low">low</option>
+    <option value="medium">medium</option>
+  </select><br><br>
+
+  <label>Max tokens</label><br>
+  <input id="maxTokens" type="number" value="300" min="50" max="2000"><br><br>
+
+  <label>
+    <input type="checkbox" id="ragEnabled" checked>
+    Enable retrieval (RAG)
+  </label><br><br>
+
+  <button onclick="save()">Save</button>
+
+  <pre id="out"></pre>
+
+<script>
+async function save() {
+  const pin = document.getElementById("pin").value;
+  const model = document.getElementById("model").value;
+  const ragEnabled = document.getElementById("ragEnabled").checked;
+  let reasoning = document.getElementById("reasoning").value;
+  const maxTokens = Number(document.getElementById("maxTokens").value);
+
+  // Guard: file_search cannot run with reasoning=minimal
+  if (ragEnabled && reasoning === "minimal") {
+    reasoning = "low";
+    document.getElementById("reasoning").value = "low";
+  }
+
+  const res = await fetch("/admin/config", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ pin, model, reasoning, maxTokens, ragEnabled })
+  });
+
+  const data = await res.json().catch(() => ({}));
+  document.getElementById("out").textContent = JSON.stringify(data, null, 2);
+}
+</script>
+</body>
+</html>
